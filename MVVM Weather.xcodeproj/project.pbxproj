@@ -22,7 +22,6 @@
 		FAF31CAB2315892000008374 /* PrevisionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF31CA92315892000008374 /* PrevisionTableViewCell.xib */; };
 		FAF31CAE2315FB8300008374 /* DetailsPrevisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF31CAD2315FB8300008374 /* DetailsPrevisionViewController.swift */; };
 		FAF31CB22316910300008374 /* PrevisionsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF31CB12316910300008374 /* PrevisionsRepository.swift */; };
-		FAF31CC1231694E400008374 /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF31CC0231694E400008374 /* CustomTableView.swift */; };
 		FAF31CC42316958600008374 /* PrevisionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF31CC32316958600008374 /* PrevisionsViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,7 +61,6 @@
 		FAF31CA92315892000008374 /* PrevisionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrevisionTableViewCell.xib; sourceTree = "<group>"; };
 		FAF31CAD2315FB8300008374 /* DetailsPrevisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPrevisionViewController.swift; sourceTree = "<group>"; };
 		FAF31CB12316910300008374 /* PrevisionsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrevisionsRepository.swift; sourceTree = "<group>"; };
-		FAF31CC0231694E400008374 /* CustomTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableView.swift; sourceTree = "<group>"; };
 		FAF31CC32316958600008374 /* PrevisionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrevisionsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -218,19 +216,10 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		FAF31CB8231692E000008374 /* TableView */ = {
-			isa = PBXGroup;
-			children = (
-				FAF31CC0231694E400008374 /* CustomTableView.swift */,
-			);
-			path = TableView;
-			sourceTree = "<group>";
-		};
 		FAF31CB9231692EE00008374 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
 				FAF31CBB2316948100008374 /* Cell */,
-				FAF31CB8231692E000008374 /* TableView */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -435,7 +424,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAF31CAA2315892000008374 /* PrevisionTableViewCell.swift in Sources */,
-				FAF31CC1231694E400008374 /* CustomTableView.swift in Sources */,
 				FAF31CAE2315FB8300008374 /* DetailsPrevisionViewController.swift in Sources */,
 				FA5AB16123156E600033D77F /* Prevision.swift in Sources */,
 				FA5AB13C23154A160033D77F /* ViewController.swift in Sources */,

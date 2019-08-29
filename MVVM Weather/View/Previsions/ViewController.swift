@@ -16,6 +16,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var localisationLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var temperatureLabel: UILabel!
+    
     var viewModel = PrevisionsViewModel()
     
     let locationManager = CLLocationManager()
@@ -50,18 +54,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print("locations = \(locValue.latitude) \(locValue.longitude)")
         self.viewModel.getPrevisions(longitude: locValue.longitude, latitude: locValue.latitude)
-        self.getAddressFromLatLon(pdblLatitude: locValue.latitude, withLongitude: locValue.longitude)
-
     }
     
     func reloadTable() {
          self.tableView.reloadData()
     }
     
-    func getAddressFromLatLon(pdblLatitude: Double, withLongitude pdblLongitude: Double) -> String {
+    func getAddressFromLatLon(pdblLatitude: Double, withLongitude pdblLongitude: Double){
         var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
         let ceo: CLGeocoder = CLGeocoder()
-        var shortAdress : String = ""
         center.latitude = pdblLatitude
         center.longitude = pdblLongitude
         
@@ -90,10 +91,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         addressString = addressString + pm.postalCode! + " "
                     }
                     
-                    shortAdress = addressString
+                    self.localisationLabel.text  = addressString
                 }
         })
-        return shortAdress
     }
     
 }

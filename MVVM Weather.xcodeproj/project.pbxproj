@@ -17,6 +17,7 @@
 		FA5AB14F23154A170033D77F /* MVVM_WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5AB14E23154A170033D77F /* MVVM_WeatherTests.swift */; };
 		FA5AB16123156E600033D77F /* Prevision.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5AB16023156E600033D77F /* Prevision.swift */; };
 		FAEB96F9231766A00038FED3 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB96F8231766A00038FED3 /* AppConstants.swift */; };
+		FAEB96FB231804C20038FED3 /* LocationUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB96FA231804C20038FED3 /* LocationUtility.swift */; };
 		FAF31CAA2315892000008374 /* PrevisionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF31CA82315892000008374 /* PrevisionTableViewCell.swift */; };
 		FAF31CAB2315892000008374 /* PrevisionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF31CA92315892000008374 /* PrevisionTableViewCell.xib */; };
 		FAF31CAE2315FB8300008374 /* DetailsPrevisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF31CAD2315FB8300008374 /* DetailsPrevisionViewController.swift */; };
@@ -56,6 +57,7 @@
 		FA5AB15F231566380033D77F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		FA5AB16023156E600033D77F /* Prevision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prevision.swift; sourceTree = "<group>"; };
 		FAEB96F8231766A00038FED3 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		FAEB96FA231804C20038FED3 /* LocationUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUtility.swift; sourceTree = "<group>"; };
 		FAF31CA82315892000008374 /* PrevisionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrevisionTableViewCell.swift; sourceTree = "<group>"; };
 		FAF31CA92315892000008374 /* PrevisionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrevisionTableViewCell.xib; sourceTree = "<group>"; };
 		FAF31CAD2315FB8300008374 /* DetailsPrevisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPrevisionViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 		FA5AB13823154A160033D77F /* MVVM Weather */ = {
 			isa = PBXGroup;
 			children = (
+				FAEB96FC23181B8E0038FED3 /* Utility */,
 				FAEB96F72317667F0038FED3 /* Common */,
 				FAF31CAC2315F4B100008374 /* App */,
 				FA5AB15B23154A7F0033D77F /* Model */,
@@ -179,6 +182,14 @@
 				FAEB96F8231766A00038FED3 /* AppConstants.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		FAEB96FC23181B8E0038FED3 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				FAEB96FA231804C20038FED3 /* LocationUtility.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		FAF31CAC2315F4B100008374 /* App */ = {
@@ -428,6 +439,7 @@
 				FAF31CAE2315FB8300008374 /* DetailsPrevisionViewController.swift in Sources */,
 				FA5AB16123156E600033D77F /* Prevision.swift in Sources */,
 				FA5AB13C23154A160033D77F /* ViewController.swift in Sources */,
+				FAEB96FB231804C20038FED3 /* LocationUtility.swift in Sources */,
 				FAEB96F9231766A00038FED3 /* AppConstants.swift in Sources */,
 				FA5AB13A23154A160033D77F /* AppDelegate.swift in Sources */,
 				FAF31CC42316958600008374 /* PrevisionsViewModel.swift in Sources */,
@@ -597,7 +609,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 02E15778B6139152EC10D7EE /* Pods-MVVM Weather.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S4MXXS4BQ6;
 				INFOPLIST_FILE = "MVVM Weather/Info.plist";
@@ -617,7 +629,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2AC6676C91B6D24D4CB3C04C /* Pods-MVVM Weather.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S4MXXS4BQ6;
 				INFOPLIST_FILE = "MVVM Weather/Info.plist";

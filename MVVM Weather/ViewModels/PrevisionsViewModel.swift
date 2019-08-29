@@ -12,19 +12,21 @@ protocol ViewModelDelegate: class {
     func reloadTable()
     func showActivityLoader()
     func hideActivityLoader()
-    
+    func updateAdress(adr:String)
 }
 
 class PrevisionsViewModel {
     
     var dataItems:[Prevision] = []
     var repository: PrevisionsRepository?
+    var locationUtility: LocationUtility?
     var numberOfEntries = 0
     
     weak var delegate: ViewModelDelegate?
     
     init() {
         repository = PrevisionsRepository()
+        locationUtility = LocationUtility()
     }
     
     func getPrevisions(longitude: Double, latitude: Double) {
@@ -46,4 +48,14 @@ class PrevisionsViewModel {
         })
         
     }
+    
+    func updateAdress(longitude: Double, latitude: Double) {
+        
+        self.locationUtility?.getAddressFromLatLon(pdblLatitude: latitude, withLongitude: longitude, completionHandler: { (addr) in
+            self.delegate?.updateAdress(adr: addr)
+
+        })
+    
+}
+    
 }

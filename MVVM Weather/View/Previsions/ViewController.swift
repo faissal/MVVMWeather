@@ -10,7 +10,6 @@ import UIKit
 import CoreLocation
 
 
-
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
@@ -20,22 +19,31 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     
+    var adress : String?
+    
     var viewModel = PrevisionsViewModel()
     
     let locationManager = CLLocationManager()
-
+    
     var detailvc : DetailsPrevisionViewController?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    fileprivate func initCurretDate() {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let dateFormated = formatter.string(from: date)
+        dateLabel.text = dateFormated
+    }
+    
+    fileprivate func initTableView() {
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
-        
         tableView.register(UINib(nibName: "PrevisionTableViewCell", bundle: nil), forCellReuseIdentifier: "PrevisionTableViewCell")
-
-        viewModel.delegate = self
-        
+        self.detailvc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailsPrevisionViewController") as? DetailsPrevisionViewController
+    }
+    
+    fileprivate func initLocationManager() {
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
         
@@ -44,60 +52,41 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
-        
-        self.detailvc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailsPrevisionViewController") as? DetailsPrevisionViewController
-
-}
+    }
     
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        initTableView()
+        
+        initCurretDate()
+        
+        initLocationManager()
+        
+        viewModel.delegate = self
+        
+        
+    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print("locations = \(locValue.latitude) \(locValue.longitude)")
         self.viewModel.getPrevisions(longitude: locValue.longitude, latitude: locValue.latitude)
+        self.viewModel.updateAdress(longitude: locValue.longitude, latitude: locValue.latitude)
+        
     }
     
     func reloadTable() {
-         self.tableView.reloadData()
-    }
-    
-    func getAddressFromLatLon(pdblLatitude: Double, withLongitude pdblLongitude: Double){
-        var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
-        let ceo: CLGeocoder = CLGeocoder()
-        center.latitude = pdblLatitude
-        center.longitude = pdblLongitude
-        
-        let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
-        
-        ceo.reverseGeocodeLocation(loc, completionHandler:
-            {(placemarks, error) in
-                if (error != nil)
-                {
-                    print("reverse geodcode fail: \(error!.localizedDescription)")
-                }
-                let pm = placemarks! as [CLPlacemark]
-                
-                if pm.count > 0 {
-                    let pm = placemarks![0]
-  
-                    var addressString : String = ""
-                    
-                    if pm.locality != nil {
-                        addressString = addressString + pm.locality! + ", "
-                    }
-                    if pm.country != nil {
-                        addressString = addressString + pm.country! + ", "
-                    }
-                    if pm.postalCode != nil {
-                        addressString = addressString + pm.postalCode! + " "
-                    }
-                    
-                    self.localisationLabel.text  = addressString
-                }
-        })
+        self.tableView.reloadData()
     }
     
 }
 extension ViewController: UITableViewDataSource, UITableViewDelegate, ViewModelDelegate{
+    
+    func updateAdress(adr: String) {
+        self.localisationLabel.text = adr
+    }
     
     func showActivityLoader() {
         self.activityIndicator.startAnimating()
@@ -108,7 +97,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate, ViewModelD
         self.activityIndicator.hidesWhenStopped = true
     }
     
- 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing : PrevisionTableViewCell.self)) as! PrevisionTableViewCell
         if viewModel.dataItems.count > 0 {
@@ -132,7 +120,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate, ViewModelD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      
+        
         self.detailvc?.configureWithPrevision(prevision: viewModel.dataItems[indexPath.row])
         self.navigationController?.pushViewController(self.detailvc!, animated: true)
     }
